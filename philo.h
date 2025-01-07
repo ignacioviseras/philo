@@ -12,13 +12,19 @@
 
 #include <stdio.h>
 #include <pthread.h>
+#include <limits.h>
 
-typedef struct s_params
+typedef struct s_philo
 {
-	int			pid;
+	int			cnt;
+	int			n_philo;
+	int			tm_die;
+	int			tm_eat;
+	int			tm_sleep;
+	pthread_mutex_t mutx;
 	
 
-}			t_params;
+}			t_philo;
 
 // FT_MALLOC
 void				*ft_malloc(size_t size);
