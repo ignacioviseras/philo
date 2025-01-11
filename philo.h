@@ -16,14 +16,13 @@
 
 typedef struct s_philo
 {
-	int			cnt;
+	int			*cnt;
+	int			id;
 	int			n_philo;
 	int			tm_die;
 	int			tm_eat;
 	int			tm_sleep;
-	pthread_mutex_t mutx;
-	
-
+	pthread_mutex_t *mutx;
 }			t_philo;
 
 // FT_MALLOC

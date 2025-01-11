@@ -82,6 +82,37 @@ void *text_thread(void *data)
 	return NULL;
 }
 
+// void *init_philo(void *philo_arg)
+// {
+// 	t_philo *philo;
+
+// 	philo = (char *) philo_arg;
+	
+// 	return NULL;
+// }
+
+void *cnt_add(void *philo_arg)
+{
+	int i;
+	t_philo *philo;
+
+	philo = (t_philo *) philo_arg;
+	i = 0;
+	// while (i < 10)
+	// {
+		// pthread_mutex_lock(philo->mutx);
+		(*(philo->cnt))++;
+		// philo->cnt++;
+		printf("Philosopher '%d' cnt value: '%d'\n", philo->id, *(philo->cnt));
+		// pthread_mutex_unlock(philo->mutx);
+		i++;
+	// }
+	// pthread_mutex_lock(&philo->mutx);
+	// printf("Philosopher %d cnt value: %d\n", philo->id, philo->cnt);
+	// pthread_mutex_unlock(&philo->mutx);
+	return NULL;
+}
+
 long	ft_atol(const char *nptr)
 {
 	int		index;
@@ -122,7 +153,12 @@ int	control_errs(char *str_num)
 	long num;
 	
 	num = ft_atol(str_num);
-	if (num < 0 || num < INT_MIN || num > INT_MAX)
+	if (num <= 0)
+	{
+		error("Invalid number of philosophers");
+		return (0);
+	}
+	if (num < INT_MIN || num > INT_MAX)
 	{
 		error("Only unsigned int numbers can be used");
 		return (0);
@@ -145,11 +181,15 @@ int init_params(t_philo *philo, char **argv)
 	philo->tm_die = ft_atol(argv[1]);
 	philo->tm_eat = ft_atol(argv[2]);
 	philo->tm_sleep = ft_atol(argv[3]);
+	// philo->cnt = 0;
 	return (1);
 }
 
 int	main(int argc, char **argv)
 {
+	int i;
+	int cnt;
+	pthread_mutex_t mutex;
 	printf("nº de argc '%d'\n", argc);
 	if (argc == 5)
 	{
@@ -160,15 +200,36 @@ int	main(int argc, char **argv)
 		printf("philo->tm_die   '%d'\n", philo.tm_die);
 		printf("philo->tm_eat   '%d'\n", philo.tm_eat);
 		printf("philo->tm_sleep '%d'\n", philo.tm_sleep);
-		if (argc == 7)
+		i = 0;
+		cnt = 0;
+		// philo.cnt = 0;
+
+		pthread_t threads[philo.n_philo];
+		t_philo philosophers[philo.n_philo];
+		pthread_mutex_init(&mutex, NULL);
+		while (i < philo.n_philo)
 		{
-
-			philo.cnt = 0;
-			pthread_mutex_init(&philo.mutx, NULL);
-
-			pthread_t threads[philo.n_philo];
-			pthread_create(&threads[0], NULL, &text_thread, "hola");
+			philosophers[i] = philo;
+			philosophers[i].id = i + 1;
+			philosophers[i].cnt = &cnt;
+			philosophers[i].mutx = &mutex;
+			pthread_create(&threads[i], NULL, &cnt_add, &philosophers[i]);
+			i++;
 		}
+		i = 0;
+		while (i < philo.n_philo)
+		{
+			pthread_join(threads[i], NULL);
+			i++;
+		}
+		// i = 0;
+		// while (i < philo.n_philo)
+		// {
+		// 	pthread_mutex_destroy(&philosophers[i].mutx);
+			pthread_mutex_destroy(&mutex);
+		// 	i++;
+		// }
+
 	}
 	return (0);
 }

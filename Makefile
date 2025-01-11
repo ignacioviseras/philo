@@ -13,6 +13,7 @@
 NAME 			= 	philo
 
 CC 				= 	gcc
+# CFLAGS 			= 	-g3 -Wall -Wextra -Werror -O3 -lpthread
 CFLAGS 			= 	-g3 -Wall -Wextra -Werror -fsanitize=address -O3 -lpthread
 INCLUDES		= 	-I ./philo.h
 
