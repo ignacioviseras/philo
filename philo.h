@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:56:01 by igvisera          #+#    #+#             */
-/*   Updated: 2025/01/24 00:06:51 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:13:42 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,25 +124,30 @@ long get_long(pthread_mutex_t *mutex, long *value);
 void set_long(pthread_mutex_t *mutex, long *dest, long value);
 bool simulation_finish(t_data *data);
 void thinking(t_philo *philo, bool simulation);
-static void eat(t_philo *philo);
+void eat(t_philo *philo);
+// static void eat(t_philo *philo);
 void wait_all(t_data *data);
 bool thread_running(pthread_mutex_t *mutex, long *threads, long n_philo);
 void increase_long(pthread_mutex_t *mutex, long *value);
 void desyncronize(t_philo *philo);
 void *dinner_simulat(void *data);
-static bool philo_die(t_philo *philo);
+bool philo_die(t_philo *philo);
+// static bool philo_die(t_philo *philo);
 void *monitor_dinner(void *tdata);
 void *one_philo(void *data);
 void clean(t_data *data);
 void init_dinner(t_data *data);
 int have_max_eats(t_data *data, char *argv);
 int init_params(t_data *data, char **argv);
-static void get_fork(t_philo *philo, t_fork *fork, int pos);
-static void init_philo(t_data *data);
+// static void get_fork(t_philo *philo, t_fork *fork, int pos);
+// static void init_philo(t_data *data);
+void get_fork(t_philo *philo, t_fork *fork, int pos);
+void init_philo(t_data *data);
 int init_data(t_data *data);
-static int mtx_errors(int status, t_ptcode pt_code);
+int mtx_errors(int status, t_ptcode pt_code);
 int handle_mtx(pthread_mutex_t *mtx, t_ptcode ptcode);
-static int thread_errors(int status, t_ptcode pt_code);
+// static int thread_errors(int status, t_ptcode pt_code);
+int thread_errors(int status, t_ptcode pt_code);
 int handle_thread(pthread_t *thread, void *(*f)(void *), void *data, t_ptcode ptcode);
 
 //time

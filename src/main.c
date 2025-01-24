@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:18:27 by igvisera          #+#    #+#             */
-/*   Updated: 2025/01/24 00:09:26 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:39:43 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -559,6 +559,3 @@ int	main(int argc, char **argv)
 		error_msg("bad number of inputs\n");
 	return (0);
 }
-
-// 1.34
-// https://www.youtube.com/watch?v=zOpzGHwJ3MU

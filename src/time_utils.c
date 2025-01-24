@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:15:32 by igvisera          #+#    #+#             */
-/*   Updated: 2025/01/23 18:55:40 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:35:14 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long  get_tm(t_time time_e)
 	struct timeval time;
 
 	if (gettimeofday(&time, NULL))
-
+		error_msg("gettime failed");
 	if (SECOND == time_e)
 		return (time.tv_sec + (time.tv_usec / 1000000));
 	else if (MILISECOND == time_e)
