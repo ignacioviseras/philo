@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/24 00:49:01 by drestrep          #+#    #+#              #
-#    Updated: 2024/12/12 15:58:52 by igvisera         ###   ########.fr        #
+#    Created: 2024/10/24 00:49:01 by igvisera          #+#    #+#              #
+#    Updated: 2025/01/24 00:05:07 by igvisera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ UTILS	   		=	$(addprefix $(PATH_UTILS), $(UTILS_SRC))
 # PATH_PARSING	=	./src/parsing/
 # PARSING			=	$(addprefix $(PATH_PARSING), $(PARSING_SRC))
 
-BASE_SRC		=	main.c
+BASE_SRC		=	main.c \
+					time_utils.c \
+					# time_utils.c \
 
 # PARSING_SRC		=	xxxxxxxxxxxxx.c \
 
