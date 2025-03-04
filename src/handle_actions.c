@@ -3,29 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_actions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 00:39:58 by igvisera          #+#    #+#             */
-/*   Updated: 2025/02/24 00:43:56 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:00:47 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-/*
-if the int returned is 0 its al ok
-	EINVAL  : 22
-	EDEADLK : 35
-	ENOMEM  : 12
-	EPERM   : 1
-	EBUSY   : 16
-	EAGAIN  : 11
-	EINVAL  : 22
-	EPERM   : 1
-	ESRCH   : 3
-	EDEADLK : 35
-*/
-int thread_errors(int status, t_ptcode pt_code)
+int	thread_errors(int status, t_ptcode pt_code)
 {
 	if (status == 0)
 		return (0);
@@ -38,18 +25,17 @@ int thread_errors(int status, t_ptcode pt_code)
 	else if (status == 22 && CREATE == pt_code)
 		error_msg("The value specified by attr is invalid");
 	else if (status == 35)
-		error_msg("A deadlock was detected or the value of *thread specifies the calling thread");
+		error_msg("A deadlock was detected or the value of *thread specifies \
+			the calling thread");
 	else if (status == 3)
 		error_msg("No thread could be found with this id");
 	return (1);
 }
 
-/*
-	if the int returned is 0 its al ok
-*/
-int handle_thread(pthread_t *thread, void *(*f)(void *), void *data, t_ptcode ptcode)
+int	handle_thread(pthread_t *thread, void *(*f)(void *), void *data,
+		t_ptcode ptcode)
 {
-	int status;
+	int	status;
 
 	status = 0;
 	if (CREATE == ptcode)
@@ -61,20 +47,7 @@ int handle_thread(pthread_t *thread, void *(*f)(void *), void *data, t_ptcode pt
 	return (thread_errors(status, ptcode));
 }
 
-/*
-if the int returned is 0 its al ok
-	EINVAL  : 22
-	EDEADLK : 35
-	ENOMEM  : 12
-	EPERM   : 1
-	EBUSY   : 16
-	EAGAIN  : 11
-	EINVAL  : 22
-	EPERM   : 1
-	ESRCH   : 3
-	EDEADLK : 35
-*/
-int mtx_errors(int status, t_ptcode pt_code)
+int	mtx_errors(int status, t_ptcode pt_code)
 {
 	if (status == 0)
 		return (0);
@@ -83,22 +56,21 @@ int mtx_errors(int status, t_ptcode pt_code)
 	else if (status == 22 && INIT == pt_code)
 		error_msg("The value specified by attr is invalid");
 	else if (status == 35)
-		error_msg("A deadlock would occur if the thread blocked waiting for mutex");
+		error_msg("A deadlock would occur if the thread blocked waiting for \
+			mutex");
 	else if (status == 1)
 		error_msg("The current thread does not hold a lock on mutex");
 	else if (status == 12)
-		error_msg("The process cannot allocate enough memory to create another mutex");
+		error_msg("The process cannot allocate enough memory to create \
+			another mutex");
 	else if (status == 16)
 		error_msg("Mutex is locked");
 	return (1);
 }
 
-/*
-	if the int returned is 0 its al ok
-*/
-int handle_mtx(pthread_mutex_t *mtx, t_ptcode ptcode)
+int	handle_mtx(pthread_mutex_t *mtx, t_ptcode ptcode)
 {
-	int status;
+	int	status;
 
 	status = 0;
 	if (LOCK == ptcode)
@@ -112,13 +84,14 @@ int handle_mtx(pthread_mutex_t *mtx, t_ptcode ptcode)
 	return (mtx_errors(status, ptcode));
 }
 
-bool thread_running(pthread_mutex_t *mutex, long *threads, long n_philo)
+bool	thread_running(pthread_mutex_t *mutex, long *threads, long n_philo)
 {
-    bool ret;
-    ret = false;
-    handle_mtx(mutex, LOCK);
-    if (*threads == n_philo)
-        ret = true;
-    handle_mtx(mutex, UNLOCK);
-    return (ret);
+	bool	ret;
+
+	ret = false;
+	handle_mtx(mutex, LOCK);
+	if (*threads == n_philo)
+		ret = true;
+	handle_mtx(mutex, UNLOCK);
+	return (ret);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+         #
+#    By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/24 00:49:01 by igvisera          #+#    #+#              #
-#    Updated: 2025/02/24 01:03:07 by igvisera         ###   ########.fr        #
+#    Updated: 2025/03/04 18:25:51 by igvisera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
