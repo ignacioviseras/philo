@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 00:55:50 by igvisera          #+#    #+#             */
-/*   Updated: 2025/03/04 19:05:09 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:00:34 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,6 @@ void	thinking(t_philo *philo, bool simulation)
 		tm_think = 0;
 	percise_usleep(tm_think * 0.42, philo->data);
 }
-
-// void	eat(t_philo *philo)
-// {
-// 	t_fork *first;  //fix: definir puntero para el tenedor a bloquear primero
-// 	t_fork *second; //fix: definir puntero para el tenedor a bloquear segundo
-// 	//fix: ordenar los tenedores por su fork_id para asegurar un orden consistente
-// 	if (philo->first_fork->fork_id < philo->second_fork->fork_id)
-// 	{
-// 		first = philo->first_fork;   //fix
-// 		second = philo->second_fork; //fix
-// 	}
-// 	else
-// 	{
-// 		first = philo->second_fork; //fix
-// 		second = philo->first_fork; //fix
-// 	}
-// 	// Ahora se adquieren los locks en el mismo orden para todos los hilos
-// 	handle_mtx(&first->fork, LOCK);
-// 		//fix: bloquea primero el tenedor con menor id
-// 	write_status(TAKE_FIRST_FORK, philo); // (mensaje, ajustar si es necesario)
-// 	handle_mtx(&second->fork, LOCK);
-// 		//fix: luego bloquea el segundo tenedor
-// 	write_status(TAKE_SECOND_FORK, philo);
-// 	set_long(&philo->phil_mtx, &philo->last_eat, get_tm(MILISECOND));
-// 	philo->eat_cnt++;
-// 	percise_usleep(philo->data->tm_eat, philo->data);
-// 	if (philo->data->max_eats > 0 && philo->eat_cnt == philo->data->max_eats)
-// 		set_bool(&philo->phil_mtx, &philo->full, true);
-// 	// Liberar los mutex (el orden de desbloqueo no es tan crítico,	pero puede hacerse inverso)
-// 	handle_mtx(&first->fork, UNLOCK);  //fix
-// 	handle_mtx(&second->fork, UNLOCK); //fix
-// }
 
 void	eat(t_philo *philo)
 {
