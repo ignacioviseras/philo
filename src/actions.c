@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 00:55:50 by igvisera          #+#    #+#             */
-/*   Updated: 2025/03/14 16:00:34 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:28:22 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	eat(t_philo *philo)
 	write_status(TAKE_FIRST_FORK, philo);
 	handle_mtx(&second->fork, LOCK);
 	write_status(TAKE_SECOND_FORK, philo);
+	write_status(EATING, philo);
 	set_long(&philo->phil_mtx, &philo->last_eat, get_tm(MILISECOND));
 	philo->eat_cnt++;
 	percise_usleep(philo->data->tm_eat, philo->data);

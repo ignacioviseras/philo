@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:15:28 by igvisera          #+#    #+#             */
-/*   Updated: 2025/03/04 18:43:46 by igvisera         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:04:05 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	write_status(t_philo_status status, t_philo *philo)
 {
 	long	elapsed;
 
-	elapsed = get_tm(MILISECOND);
+	elapsed = get_tm(MILISECOND) - philo->data->init_time;
 	handle_mtx(&philo->data->print_mutx, LOCK);
 	if ((TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status)
 		&& !simulation_finish(philo->data))
